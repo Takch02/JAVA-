@@ -1,6 +1,8 @@
 위 내용은 eclipse IDE를 사용합니다.
 C언어를 어느정도 할 줄 아는 전제로 시작합니다.
+이것이 자바다 정리입니다.
 
+< 2장 >
 
 정수 타입 -> byte, char, short, int, long
 실수 타입 -> float, double
@@ -11,7 +13,8 @@ C언어를 어느정도 할 줄 아는 전제로 시작합니다.
 JAVA에선 String 이라는 문자열 타입이 있는데 String = "chan"; 이렇게 문자열을 저장할 수 있다.(큰 따옴표를 사용해야 함.)
 char = 'A';  char은 문자 한개를 담을 수 있으며 작은 따옴표로 작성한다.
 
-<자동 타입 변환>
+
+< 자동 타입 변환 >
 
 작은 허용 범위 타입 -> 큰 허용 범위 타입 으로 변환한다.
 허용 범위 순서는 byte < short, char < int < long < float < double 이다.
@@ -24,3 +27,99 @@ ex)
 
 long var1 = 1000L;
 float ver2 = ver1;  // ver1이 long -> float 형으로 변환됨.
+
+char ver3 = 'A';
+int ver4 = ver3;  // ver3이 char -> int 형으로 변환됨. (char을 int형으로 바꾸면 해당 ASCII값으로 바뀐다. 65가 저장됨)
+
+exception)
+
+byte a = 10;
+//char b = a;   컴파일 오류
+byte 는 음수범위까지 포함하지만 char은 양수범위만 포함하기 때문에 변환되지 않는다.
+
+
+< 강제 타입 변환 >
+
+
+int var1 = 100;
+byte ver2 = (byte)var1;  // byte를 캐스팅 하여 강제 타입 변환 한다.
+
+-> 여기서 byte는 1byte, int는 4bite인데 크기가 줄어드는 원리는 첫 byte값을 제외한 나머지 3byte를 버린다.
+즉 int를 byte로 변환하면 127까지 값만 보존 가능하며 나머지 값은 버려진다.
+
+double ver3 = 125,5;
+int ver4 = (int)ver3;  // 실수 타입을 정수로 변환하면 소숫점 이하 부분은 버려지고 정수부분만 저장된다.(125 저장)
+
+
+< '+' 연산자 >
+
+
+JAVA에서 + 연산자는 2가지 역활이 있다.
+
+1. 모두 숫자일 경우 덧셈연산
+2. 피연산중 하나가 문자열일 경우 나머지 피연산자도 "문자열로 자동변환"하여 문자열 결합 연산
+
+ex)
+
+int ver1 = 3 + 7;    // 덧셈연산
+String ver2 = "3" + 7;  -> String ver2 = "3" + "7" -> String ver2 = "37"    // 이렇게 문자열 결합 연산을 한다
+
+if)
+
+String ver3 = 3 + 7 + "10"; 
+앞의 3+ 7 연산 후 "10"과 결합한다. 즉 1010 을 저장한다.
+
+
+< 콘솔로 변수값 출력 >
+
+JAVA 에선 System.out.println(); 으로 출력했는데
+println() -> 괄호 안의 내용을 출력하고 행을 바꾼다("\n" 과 같음)
+print() -> 괄호 안의 내용을 출력하고 행을 바꾸지 않는다.
+printf("변수", 값1...) -> C의 printf와 동일
+
+
+< Scanner >
+
+C에서 scanf를 JAVA에선 패키지를 선언 후 사용해야한다.
+
+package ch02.sec12;  // package 는 해당 파일의 경로
+
+import java.util.Scanner;		// C언어의 헤더파일 같은 느낌?
+
+public class ScannerExample {  // 클래스 명은 해당 파일의 이름과 동일해야 함.
+	
+	public static void main(String[] args) {  // main 메소드
+		
+		try(Scanner scanner = new Scanner(System.in)) {  // 위처럼 Scanner을 정의해줘야 사용 가능하다.
+		
+		System.out.print("x값 입력 : ");
+		String strX = scanner.nextLine();    // scanner은 처음에 문자열로 값을 받아드린다. *****
+		int x = Integer.parseInt(strX);    // 이를 형변환 해줘야한다. *****
+		
+		System.out.print("y값 입력 : ");
+		String strY = scanner.nextLine();
+		int y = Integer.parseInt(strY);
+		
+		int result = x + y;
+		System.out.println("x + y = " + result);
+		while (true) {
+			
+			System.out.print("문자열 입력 : ");
+			String data = scanner.nextLine();
+			
+			if (data.equals("q")) {		// 입력한 문자열이 q라면 종료
+				break;
+			}
+			System.out.println("문자열 출력 :" + data);
+		}
+		System.out.println("종료");
+	}
+}
+} 
+
+***
+여기서 형변환이 있는데
+int x = Integer.parseInt(strX); // strX를 int로 바꾼다. 만약 "123"이 저장되있다면 int x = 123; 을 저장한다. 문자 그대로 저장함.
+대문자 주의
+
+
