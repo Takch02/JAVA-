@@ -1,4 +1,7 @@
 위 내용은 eclipse IDE를 사용합니다.
 
 정수 타입 -> byte, char, short, int, long
-실수 타입 -> 
+실수 타입 -> float, double
+논리 타입 -> boolean
+
+메모리 사용 크기 -> byte(8bit), short(16bit), int(32bit), long(64bit)
