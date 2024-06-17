@@ -1,7 +1,26 @@
 위 내용은 eclipse IDE를 사용합니다.
+C언어를 어느정도 할 줄 아는 전제로 시작합니다.
+
 
 정수 타입 -> byte, char, short, int, long
 실수 타입 -> float, double
 논리 타입 -> boolean
 
 메모리 사용 크기 -> byte(8bit), short(16bit), int(32bit), long(64bit)
+
+JAVA에선 String 이라는 문자열 타입이 있는데 String = "chan"; 이렇게 문자열을 저장할 수 있다.(큰 따옴표를 사용해야 함.)
+char = 'A';  char은 문자 한개를 담을 수 있으며 작은 따옴표로 작성한다.
+
+<자동 타입 변환>
+
+작은 허용 범위 타입 -> 큰 허용 범위 타입 으로 변환한다.
+허용 범위 순서는 byte < short, char < int < long < float < double 이다.
+
+byte a = 10;
+int b = a; 
+이렇게 작성하면 byte 타입인 a는 int b에 할당되며 자동으로 byte -> int 형으로 변환된다.
+
+ex)
+
+long var1 = 1000L;
+float ver2 = ver1;  // ver1이 long -> float 형으로 변환됨.
